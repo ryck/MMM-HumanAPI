@@ -12,8 +12,7 @@ Module.register("MMM-HumanAPI", {
     accessToken: "demo",
     initialLoadDelay: 0, // No delay/
     animationSpeed: 1000, // One second.
-    resources: ["weight", "bmi", "bodyFat", "heartRate", "height"],
-    // resources: ["weight", "bmi", "bodyFat", "heartRate", "height", "bloodGlucose", "bloodPressure"],
+    resources: ["weight", "bmi", "bodyFat", "heartRate", "height", "bloodGlucose", "bloodPressure"],
     debug: false
   },
 
