@@ -1,35 +1,30 @@
 {
-  "name": "mmm-dht-sensor",
+  "name": "mmm-humanapi",
   "version": "1.0.0",
-  "description": "Magic Mirror 2 module to get data form DHT11, DHT22 and AM2302 sensors",
-  "main": "MMM-DHT-Sensor.js",
-  "dependencies": {},
-  "devDependencies": {
-    "node-dht-sensor": "latest"
+  "description": "Magic Mirror 2 module to get data from HumanAPI",
+  "main": "MMM-HumanAPI.js",
+  "dependencies": {
+    "request":  "latest"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryck/MMM-DHT-Sensor.git"
+    "url": "git+https://github.com/ryck/MMM-HumanAPI.git"
   },
   "keywords": [
     "Magic",
     "Mirror",
     "Module",
-    "Temperature",
-    "Humidity",
-    "Sensor",
-    "DHT11",
-    "DHT22",
-    "AM2302",
-    "bcm2835"
+    "HumanAPI",
+    "Health"
   ],
   "author": "Ricardo Gonzalez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ryck/MMM-DHT-Sensor/issues"
+    "url": "https://github.com/ryck/MMM-HumanAPI/issues"
   },
-  "homepage": "https://github.com/ryck/MMM-DHT-Sensor#readme"
+  "homepage": "https://github.com/ryck/MMM-HumanAPI#readme"
 }

@@ -8,33 +8,35 @@
  */
 
 const NodeHelper = require("node_helper");
-var sensor = require("node-dht-sensor");
+const	request = require("request");
 
 module.exports = NodeHelper.create({
 
 	start: function() {
-		console.log("MMM-DHT-Sensor helper started ...");
+		console.log("MMM-HumanAPI helper started ...");
 	},
-	/**
-	 * readSensor()
-	 * Requests sensor data.
+
+	/* getTimetable()
+	 * Requests new data from HumanAPI.
+	 * Sends data back via socket on succesfull response.
 	 */
-	readSensor: function(sensorPin, sensorType) {
+	getWellnessData: function(url) {
 		var self = this;
-		sensor.read(sensorType, sensorPin, function(err, temperature, humidity) {
-		  if (!err) {
-				self.sendSocketNotification("SENSOR_DATA", {"temperature": temperature.toFixed(1), "humidity": humidity.toFixed(1) });
+		var retry = true;
+
+		request({url:url, method: "GET"}, function(error, response, body) {
+			if(!error && response.statusCode == 200) {
+				self.sendSocketNotification("WELLNESS_DATA", {"result": JSON.parse(body), "url": url});
 			} else {
-				self.sendSocketNotification("SENSOR_DATA", {"temperature": null, "humidity": null });
-				console.log(err);
+				self.sendSocketNotification("WELLNESS_DATA", {"result": null, "url": url});
 			}
 		});
 	},
 
 	//Subclass socketNotificationReceived received.
 	socketNotificationReceived: function(notification, payload) {
-		if (notification === "GET_SENSOR_DATA") {
-			this.readSensor(payload.sensorPin, payload.sensorType);
+		if (notification === "GET_WELLNESS_DATA") {
+			this.getWellnessData(payload.url);
 		}
 	}
 });
